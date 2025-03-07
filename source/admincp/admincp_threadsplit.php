@@ -450,4 +450,4 @@ function update_threadtableids() {
 	C::t('common_setting')->update_setting('threadtableids', $threadtableids);
 	savecache('threadtableids', $threadtableids);
 }
-?> 
+?>
