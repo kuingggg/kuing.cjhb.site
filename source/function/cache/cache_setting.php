@@ -801,7 +801,7 @@ function get_cachedata_mainnav() {
 		$nav['name'] = '<span lang="zh">'.$nav['name'].'</span>'.($nav['title'] ? '<span lang="en">'.$nav['title'].'</span>' : '');
 		$subnavs = '';
 		foreach(C::t('common_nav')->fetch_all_subnav($nav['id']) as $subnav) {
-			$item = "<a href=\"{$subnav['url']}\" hidefocus=\"true\" ".($subnav['title'] ? "title=\"{$subnav['title']}\" " : '').($subnav['target'] == 1 ? "target=\"_blank\" " : '').parsehighlight($subnav['highlight']).">{$subnav['name']}</a>";
+			$item = "<a href=\"{$subnav['url']}\" hidefocus=\"true\" ".($subnav['title'] ? "title=\"{$subnav['title']}\" " : '').($subnav['target'] == 1 ? "target=\"_blank\" " : '').parsehighlight($subnav['highlight'])."><span lang='zh'>{$subnav['name']}</span><span lang='en'>{$subnav['title']}</span></a>";
 			$liparam = !$nav['subtype'] || !$nav['subcols'] ? '' : ' style="width:'.sprintf('%1.1f', (1 / $nav['subcols']) * 100).'%"';
 			$subnavs .= '<li'.$liparam.'>'.$item.'</li>';
 		}
