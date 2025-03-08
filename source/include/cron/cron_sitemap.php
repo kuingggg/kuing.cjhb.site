@@ -36,6 +36,17 @@ foreach ($result as $row) {
         $sitemap .= "<url>\n";
         $sitemap .= "<loc>$link</loc>\n";
         $sitemap .= "<lastmod>$lastmod</lastmod>\n";
+        if ($row['maxposition'] > 4) {
+            $sitemap .= "<priority>0.9</priority>\n";
+        } elseif ($row['maxposition'] > 3) {
+            $sitemap .= "<priority>0.8</priority>\n";
+        } elseif ($row['maxposition'] > 2) {
+            $sitemap .= "<priority>0.7</priority>\n";
+        } elseif ($row['maxposition'] > 1) {
+            $sitemap .= "<priority>0.6</priority>\n";
+        } else {
+            $sitemap .= "<priority>0.5</priority>\n";
+        }
         $sitemap .= "<changefreq>daily</changefreq>\n";
         $sitemap .= "</url>\n";
     }
