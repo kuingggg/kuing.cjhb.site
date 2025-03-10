@@ -1230,6 +1230,7 @@ CSS 写作注意事项：
 
 /* 登录和注册 */
 
+span.login_slct,td.tipcol a {white-space: nowrap;}
 .rfm { margin: 0 auto; width: 760px; border-bottom: 1px dotted {COMMONBORDER}; }
 		.rfm a { color: {HIGHLIGHTLINK}; }
 		.rfm .rq {}
