@@ -1702,27 +1702,6 @@ function initSearchmenu(searchform, cloudSearchUrl) {
 	if(!searchtxt) {
 		searchtxt = $(searchform);
 	}
-	var tclass = searchtxt.className;
-	searchtxt.className = tclass + ' xg1';
-	if (!!("placeholder" in document.createElement("input"))) {
-/*vot*/		if(searchtxt.value == lng['enter_search_string']) {
-			searchtxt.value = '';
-		}
-/*vot*/		searchtxt.placeholder = lng['enter_search_string'];
-	} else {
-		searchtxt.onfocus = function () {
-/*vot*/			if(searchtxt.value == lng['enter_search_string']) {
-				searchtxt.value = '';
-				searchtxt.className = tclass;
-			}
-		};
-		searchtxt.onblur = function () {
-			if(searchtxt.value == '' ) {
-/*vot*/				searchtxt.value = lng['enter_search_string'];
-				searchtxt.className = tclass + ' xg1';
-			}
-		};
-	}
 	if(!$(searchform + '_type_menu')) return false;
 	var o = $(searchform + '_type');
 	var a = $(searchform + '_type_menu').getElementsByTagName('a');
@@ -1760,12 +1739,6 @@ function initSearchmenu(searchform, cloudSearchUrl) {
 }
 
 function searchFocus(obj) {
-/*vot*/	if(obj.value == lng['enter_search_string']) {
-		obj.value = '';
-	}
-	if($('cloudsearchquery') != null) {
-		$('cloudsearchquery').value = obj.value;
-	}
 }
 
 function sendsecmobseccode(svctype, secmobicc, secmobile) {
