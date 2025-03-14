@@ -58,10 +58,13 @@ if($_GET['view'] == 'online') {
 		$theurl = "home.php?mod=space&uid={$space['uid']}&do=friend&view=online&type=all";
 		if(($count = C::app()->session->count_invisible(0))) {
 			$onlinedata = DB::fetch_all('SELECT s.*, f.name, t.subject FROM '.DB::table('common_session').' AS s LEFT JOIN '.DB::table('forum_forum').' AS f ON s.fid=f.fid LEFT JOIN '.DB::table('forum_thread').' AS t ON s.tid=t.tid WHERE invisible = 0 ORDER BY lastactivity DESC'.DB::limit($start, $perpage), null, 'sid');
+			$actioncode = lang('action');
 			foreach($onlinedata as $key => $value) {
 				$value['lastactivity'] = dgmdate($value['lastactivity'], 't');
+				$value['action'] = $actioncode[$value['action']];
 				$onlinedata[$key] = $value;
 			}
+			unset($actioncode);
 		}
 	}
 
