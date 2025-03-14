@@ -505,7 +505,6 @@ $lang = array (
 
 //Space online user list
 	'time' => 'Last seen',
-	'online_action' => 'Current action',
 	'online_in_forum' => 'In forum',
 	'online_in_thread' => 'In thread',
 	'online_ip' => 'IP address',
