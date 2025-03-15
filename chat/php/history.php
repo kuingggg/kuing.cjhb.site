@@ -3,10 +3,6 @@ require '../../source/class/class_core.php';
 $discuz = C::app();
 $discuz->init_cron = false;
 $discuz->init();
-if(empty($_G['uid'])) {
-    header('HTTP/1.1 401 Unauthorized');
-    exit('not_loggedin');
-}
 include '../../config/config_global.php';
 $conn = new mysqli($_config['db'][1]['dbhost'], $_config['db'][1]['dbuser'], $_config['db'][1]['dbpw'], $_config['db'][1]['dbname']);
 if ($conn->connect_error) {
