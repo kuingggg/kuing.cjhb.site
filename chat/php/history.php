@@ -13,8 +13,8 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Delete messages older than 2 days
-$delete_sql = "DELETE FROM chat WHERE time < NOW() - INTERVAL 2 DAY";
+// Old rows beyond limit 50 will be deleted as new ones come in.
+$delete_sql = "DELETE FROM chat WHERE time < (SELECT time FROM chat ORDER BY time DESC LIMIT 50, 1)";
 $conn->query($delete_sql);
 
 
