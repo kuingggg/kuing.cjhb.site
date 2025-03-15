@@ -126,46 +126,46 @@ PusherChatWidget.prototype._chatMessageReceived = function(data) {
 };
 
 /* @private */
-PusherChatWidget.prototype._sendChatButtonClicked = function() {
-  var message = jQuery.trim(this._messageInputEl.val());
-  if(!message) {
-    alert('please supply a chat message');
-    return;
-  }
-
-  var chatInfo = {
-    text: message
-  };
-  this._sendChatMessage(chatInfo);
-};
-
-/* @private */
 if(discuz_uid == '0') {
-  PusherChatWidget.prototype._sendChatMessage = function(data) {
-    showWindow('chat','member.php?mod=logging&action=login');
+  PusherChatWidget.prototype._sendChatButtonClicked = function() {
+    showWindow('chat','member.php?mod=logging&action=login&guestmessage=yes');
   }
-} else { 
-  PusherChatWidget.prototype._sendChatMessage = function(data) {
-    var self = this;
-    
-    this._messageInputEl.attr('readonly', 'readonly');
-    jQuery.ajax({
-      url: this.settings.chatEndPoint,
-      type: 'post',
-      dataType: 'json',
-      data: {
-        'chat_info': data
-      },
-      complete: function(xhr, status) {
-        Pusher.log('Chat message sent. Result: ' + status + ' : ' + xhr.responseText);
-        if(xhr.status === 200) {
-          self._messageInputEl.val('');
-        }
-        self._messageInputEl.removeAttr('readonly');
-      }
-    })
+} else {
+  PusherChatWidget.prototype._sendChatButtonClicked = function() {
+    var message = jQuery.trim(this._messageInputEl.val());
+    if(!message) {
+      alert('please supply a chat message');
+      return;
+    }
+
+    var chatInfo = {
+      text: message
+    };
+    this._sendChatMessage(chatInfo);
   };
 }
+
+/* @private */
+PusherChatWidget.prototype._sendChatMessage = function(data) {
+  var self = this;
+  
+  this._messageInputEl.attr('readonly', 'readonly');
+  jQuery.ajax({
+    url: this.settings.chatEndPoint,
+    type: 'post',
+    dataType: 'json',
+    data: {
+      'chat_info': data
+    },
+    complete: function(xhr, status) {
+      Pusher.log('Chat message sent. Result: ' + status + ' : ' + xhr.responseText);
+      if(xhr.status === 200) {
+        self._messageInputEl.val('');
+      }
+      self._messageInputEl.removeAttr('readonly');
+    }
+  })
+};
 
 /* @private */
 PusherChatWidget.prototype._startTimeMonitor = function() {
