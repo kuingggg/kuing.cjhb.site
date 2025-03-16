@@ -50,5 +50,10 @@ class table_forum_hotreply_number extends discuz_table {
 		}
 		return DB::query('DELETE FROM %t WHERE '.DB::field('pid', $pids), array($this->_table));
 	}
+
+	public function delete_vote_by_pid($pid, $typeid) {
+		$typename = $typeid == 1 ? 'support' : 'against';
+		return DB::query('UPDATE %t SET '.$typename.'='.$typename.'-1, total=total-1 WHERE pid=%d', array($this->_table, $pid));
+	}
 }
 ?>
