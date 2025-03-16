@@ -263,11 +263,8 @@ PusherChatWidget.timeToDescription = function(time) {
   const seconds = Math.round(howLongAgo/1000);
   const minutes = Math.round(seconds/60);
   const hours = Math.round(minutes/60);
-  if(seconds === 0) {
-    desc = "just now";
-    if(isChinese) {
-      desc = "刚刚";
-    }
+  if(seconds <= 0) {
+    desc = isChinese ? "刚刚" : "just now";
   }
   else if(minutes < 1) {
     desc = seconds + " second" + (seconds !== 1?"s":"") + " ago";
